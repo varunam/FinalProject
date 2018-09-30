@@ -60,6 +60,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     compile project(':JavaJokes')
-    compile project(path: ':jokeactivity', configuration: 'default')
+    compile project (':jokeslib_android')
 
 }

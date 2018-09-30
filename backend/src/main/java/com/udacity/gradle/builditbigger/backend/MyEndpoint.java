@@ -4,6 +4,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
+import java.util.logging.Logger;
+
 import javax.inject.Named;
 
 import app.testproject.com.javajokes.Joker;
@@ -27,14 +29,17 @@ public class MyEndpoint {
      */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {
-        /*Logger.getAnonymousLogger().entering("sayHi","Said Hi back from backend");
         MyBean response = new MyBean();
-        response.setData("Hi, " + name);*/
+        response.setData("Hi, " + name);
+        
+        return response;
+    }
+    
+    @ApiMethod(name = "getJoke")
+    public MyBean getJoke(){
         MyBean response = new MyBean();
         Joker joker = new Joker();
         response.setData(joker.getJoke());
-        
-        
         return response;
     }
     
