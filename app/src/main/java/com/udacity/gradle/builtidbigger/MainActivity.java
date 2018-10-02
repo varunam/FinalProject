@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void tellJoke(View view) {
-        new EndpointsAsyncTask(getApplicationContext()).execute(MainActivityFragment.newInstance());
+        new EndpointsAsyncTask(getApplicationContext()).execute(com.udacity.gradle.builtidbigger.MainActivityFragment.newInstance());
     }
     
     

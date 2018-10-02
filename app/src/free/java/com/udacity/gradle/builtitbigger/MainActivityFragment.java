@@ -16,6 +16,7 @@ import app.testproject.com.jokeslib_android.DisplayJokeActivity;
 
 public class MainActivityFragment extends Fragment {
     public String joke_loaded = null;
+    public boolean testFlag = false;
     
     public static MainActivityFragment newInstance() {
         
@@ -46,10 +47,10 @@ public class MainActivityFragment extends Fragment {
     }
     
     public void launchJokeActivity(Context context) {
-        Intent intent = new Intent(context, DisplayJokeActivity.class);
-        intent.putExtra(DisplayJokeActivity.JOKE_KEY, joke_loaded);
-        //Toast.makeText(context, loadedJoke, Toast.LENGTH_LONG).show();
-        context.startActivity(intent);
-        //progressBar.setVisibility(View.GONE);
+        if(!testFlag) {
+            Intent intent = new Intent(context, DisplayJokeActivity.class);
+            intent.putExtra(DisplayJokeActivity.JOKE_KEY, joke_loaded);
+            context.startActivity(intent);
+        }
     }
 }

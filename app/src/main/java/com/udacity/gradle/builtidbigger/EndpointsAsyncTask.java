@@ -8,14 +8,13 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
-import com.udacity.gradle.builtidbigger.MainActivityFragment;
 
 import java.io.IOException;
 
-class EndpointsAsyncTask extends AsyncTask<com.udacity.gradle.builtidbigger.MainActivityFragment, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<com.udacity.gradle.builtidbigger.MainActivityFragment, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
-    private MainActivityFragment mainActivityFragment;
+    private com.udacity.gradle.builtidbigger.MainActivityFragment mainActivityFragment;
     
     public EndpointsAsyncTask(Context context)
     {
@@ -25,7 +24,7 @@ class EndpointsAsyncTask extends AsyncTask<com.udacity.gradle.builtidbigger.Main
     @Override
     protected String doInBackground(com.udacity.gradle.builtidbigger.MainActivityFragment... params) {
         mainActivityFragment = params[0];
-        if(myApiService == null) {  // Only do this once
+        if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
@@ -53,6 +52,7 @@ class EndpointsAsyncTask extends AsyncTask<com.udacity.gradle.builtidbigger.Main
     @Override
     protected void onPostExecute(String result) {
         mainActivityFragment.joke_loaded = result;
-        mainActivityFragment.launchJokeActivity(context);
+        if (!mainActivityFragment.testFlag)
+            mainActivityFragment.launchJokeActivity(context);
     }
 }
